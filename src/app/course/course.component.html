@@ -1,9 +1,41 @@
 <div class="course">
 
-    <h2>{{course?.description}}</h2>
+  <h2>{{course?.description}}</h2>
 
-    <img class="course-thumbnail" [src]="course?.iconUrl">
+  <img class="course-thumbnail" [src]="course?.iconUrl">
+
+  <mat-form-field>
+
+    <input matInput placeholder="Search Lessons" #input (keyup)="searchLessons(input.value)">
+
+  </mat-form-field>
+
+  <mat-table class="lesson-table mat-elevation-z8" [dataSource]="dataSource">
+
+    <ng-container matColumnDef="seqNo">
+
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+
+      <mat-cell class="description-cell" *matCellDef="let lesson">{{lesson.seqNo}}</mat-cell>
+
+    </ng-container>
+    <ng-container matColumnDef="description">
+
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+
+      <mat-cell class="description-cell" *matCellDef="let lesson">{{lesson.description}}</mat-cell>
+
+    </ng-container>
+    <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+
+      <mat-cell class="description-cell" *matCellDef="let lesson">{{lesson.duration}}</mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+
+  </mat-table>
 
 </div>
-
-
